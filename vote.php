@@ -44,7 +44,7 @@ if(mysqli_num_rows($vote_result) > 0) {
 /* If vote submitted */
 if(isset($_POST['vote'])) {
 
-    $selected_option = mysqli_real_escape_string($conn, $_POST['option']);
+    $selected_option = intval($_POST['option']);
 
     $insert_vote = "INSERT INTO votes (poll_id, user_id, selected_option)
                     VALUES ('$poll_id', '$user_id', '$selected_option')";
@@ -70,14 +70,14 @@ include("header.php");
     <form method="POST">
 
         <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="option" value="option1" required>
+            <input class="form-check-input" type="radio" name="option" value="1" required>
             <label class="form-check-label">
                 <?php echo $poll['option1']; ?>
             </label>
         </div>
 
         <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="option" value="option2">
+            <input class="form-check-input" type="radio" name="option" value="2">
             <label class="form-check-label">
                 <?php echo $poll['option2']; ?>
             </label>
@@ -85,7 +85,7 @@ include("header.php");
 
         <?php if(!empty($poll['option3'])) { ?>
         <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="option" value="option3">
+            <input class="form-check-input" type="radio" name="option" value="3">
             <label class="form-check-label">
                 <?php echo $poll['option3']; ?>
             </label>
